@@ -1,0 +1,35 @@
+{% load static %}
+{% load static tailwind_tags %}
+
+<!doctype html>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% tailwind_css %}
+    <title>{% block 'title' %}Alura Space | {% endblock %}{% block 'extratitle' %}{% endblock %}</title>
+    {% block favicon %}
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+    {% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {% block 'head' %}{% endblock 'head' %}
+  </head>
+
+  <body>
+      
+    <main class="bg-dark-gray min-h-screen font-sans leading-normal tracking-normal text-white ">
+      
+        {% block 'body' %}{% endblock 'body' %}
+      
+    </main>
+
+    {% block corejs %}
+    {% endblock %}
+
+    {% block postloadjs %}
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+    {% endblock %}
+
+  </body>
+</html>
