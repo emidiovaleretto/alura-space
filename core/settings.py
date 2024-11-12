@@ -26,7 +26,8 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-emidiovalere-aluraspace-uofnhnbclod.ws-us116.gitpod.io'
+    '8000-emidiovalere-aluraspace-uofnhnbclod.ws-us116.gitpod.io',
+    '127.0.0.1',
 ]
 
 
