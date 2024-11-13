@@ -22,9 +22,20 @@
   </head>
 
   <body class="background">
-            
-    {% block 'body' %}{% endblock 'body' %}
+
+    <div class="container mx-auto p-6">
+
+      {% include 'partials/_header.html' %}
+
+      <main class="principal">
+        {% include 'partials/_navigation.html' %}
+      {% block 'body' %}{% endblock 'body' %}
+      </main>
       
+    </div>
+    
+    {% include 'partials/_footer.html' %}
+
     {% block corejs %}
     {% endblock %}
 
