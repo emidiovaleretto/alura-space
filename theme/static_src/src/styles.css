@@ -4,5 +4,149 @@
 
 
 .background {
-    @apply font-sans bg-gradient-to-b from-blue-950 via-blue-900 to-blue-800  min-h-screen bg-cover bg-center bg-no-repeat;
+    @apply font-sans bg-gradient-to-b from-[#041833] via-[#04244F] to-[#154580]  min-h-screen bg-cover bg-center bg-no-repeat;
+}
+
+.cabecalho {
+    @apply flex items-center justify-between mt-6 mb-16
+}
+
+.cabecalho__busca {
+    @apply flex rounded-xl border bg-gradient-to-r from-[#C98CF1] to-[#7B78E5] h-auto p-0.5 w-auto
+}
+
+.busca__fundo {
+    @apply flex items-center bg-[#041A37] rounded-lg mx-auto w-full
+}
+
+.busca__input {
+    @apply flex items-center bg-transparent border-none text-base h-6 p-[10px] w-[500px] placeholder:text-[#D9D9D9]
+}
+
+.busca__icone {
+    @apply cursor-pointer w-8 h-8
+}
+
+.card {
+    @apply relative rounded-xl shadow-lg text-white mb-6 w-[450px];
+}
+
+.card__imagem {
+    @apply rounded-t-xl w-[450px];
+}
+
+.card__tag {
+    @apply bg-[#D9D9D940] rounded-lg border-2 border-transparent text-xl left-[310px] mr-6 p-2 absolute text-center top-5 w-24;
+}
+
+.card__info {
+    @apply text-xl px-6 pb-4
+}
+
+.card__titulo {
+    @apply font-bold leading-5 mt-3
+}
+
+.card__texto {
+    @apply flex flex-wrap justify-between
+}
+
+.card__texto img {
+    @apply cursor-pointer
+}
+
+.card__descricao {
+    @apply text-xs mt-2
+}
+
+.galeria {
+    @apply flex w-full
+}
+
+.imagem {
+    @apply flex justify-center items-center
+}
+
+.imagem__conteudo {
+    @apply bg-transparent flex flex-col rounded-r-2xl w-[950px]
+}
+
+.imagem__imagem {
+    @apply w-full rounded-2xl
+}
+
+.imagem__info {
+    @apply flex justify-between items-center text-xl my-4
+}
+
+.imagem__texto {
+    @apply flex flex-col justify-between mt-2 text-white
+}
+
+.imagem__titulo {
+    @apply font-bold leading-8 text-white
+}
+
+.imagem__texto {
+    @apply text-base
+}
+
+.imagem__descricao {
+    @apply text-sm
+}
+
+.menu-lateral {
+    @apply pr-6 box-border min-w-[270px] 
+}
+
+.menu-lateral__navegacao {
+    @apply flex flex-col
+}
+
+.menu-lateral__navegacao a {
+    @apply font-sans flex items-center mb-6 no-underline text-[#D9D9D9] text-2xl
+}
+
+.menu-lateral__navegacao a:first-child {
+    @apply font-bold text-[#7B78E5]
+}
+
+.menu-lateral__navegacao img {
+    @apply mr-4
+}
+
+.principal {
+    @apply flex justify-between
+}
+
+.rodape {
+    @apply bg-[#04244F] w-full py-6 px-12 box-border flex justify-between text-white
+}
+
+.rodape__icones {
+    @apply flex justify-between w-20
+}
+
+.rodape__texto {
+    @apply text-base
+}
+
+.tags {
+    @apply flex items-center text-[#D9D9D9] text-xl py-6
+}
+
+.tags__titulo {
+    @apply mr-16
+}
+
+.tags__lista {
+    @apply flex
+}
+
+.tags__tag {
+    @apply bg-[#D9D9D930] mr-6 rounded-lg py-2 px-3 w-full text-center border-2 border-transparent
+}
+
+.tags__tag:hover {
+    @apply border-[#7B78E5] cursor-pointer
 }
