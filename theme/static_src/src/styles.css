@@ -32,7 +32,7 @@
 }
 
 .card__imagem {
-    @apply rounded-t-xl w-[450px];
+    @apply rounded-t-xl w-[450px] h-72;
 }
 
 .card__tag {
