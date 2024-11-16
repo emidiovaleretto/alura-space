@@ -11,3 +11,9 @@ def index(request):
 def imagem(request, id):
     photo = get_object_or_404(Photo, pk=id)
     return render(request, 'galleries/imagem.html', {'photo': photo})
+
+
+def search(request):
+    search = request.GET.get('search')
+    photos = Photo.objects.filter(name__icontains=search)
+    return render(request, 'galleries/search.html', {'photos': photos})

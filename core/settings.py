@@ -30,6 +30,10 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-emidiovalere-aluraspace-uofnhnbclod.ws-eu116.gitpod.io'
+]
+
 
 # Application definition
 

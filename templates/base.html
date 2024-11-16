@@ -28,8 +28,16 @@
       {% include 'partials/_header.html' %}
 
       <main class="principal">
+
         {% include 'partials/_navigation.html' %}
-      {% block 'body' %}{% endblock 'body' %}
+
+        <section class="conteudo">
+
+          {% block 'body' %}
+          
+          {% endblock 'body' %}
+          
+        </section>
       </main>
       
     </div>

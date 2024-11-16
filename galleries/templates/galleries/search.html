@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'body' %}
+
+    {% include 'partials/_banner.html' %}
+
+    {% for photo in photos %}
+        {% include 'partials/_card.html' %}
+    {% empty %}
+        <p class="text-lg text-white">Não encontramos o que você está buscando...</p>
+    {% endfor %}
+
+{% endblock 'body' %}

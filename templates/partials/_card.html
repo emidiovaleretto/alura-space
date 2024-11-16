@@ -1,0 +1,23 @@
+{% load static %}
+
+<li class="card">
+    <a href="{% url 'imagem' photo.id %}">
+        
+    {% if not photo.image %}
+        <img class="card__imagem" src="{% static 'img/placeholder.png' %}" alt="Imagem não encontrada">
+    {% else %}
+        <img class="card__imagem" src="{{ photo.image.url }}" alt="{{ photo.name }}">
+    {% endif %}
+            
+    </a>
+    <span class="card__tag">{{ photo.category }}</span>
+    <div class="card__info">
+        <p class="card__titulo">{{ photo.name }}</p>
+        <div class="card__texto">
+            <p class="card__descricao">{{ photo.caption }}</p>
+            <span>
+                <img src="{% static 'img/favorite_outline.png' %}" alt="ícone de coração">
+            </span>
+        </div>
+    </div>
+</li>
