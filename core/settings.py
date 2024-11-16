@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 
     # Apps
     'galleries',
+    'users',
 ]
 
 TAILWIND_APP_NAME = 'theme'
