@@ -3,8 +3,9 @@ from .models import Photo
 
 
 def index(request):
-    photos = Photo.objects.all()
-    return render(request, 'galleries/index.html', {'photos': photos})
+    photos = Photo.objects.filter(published=True)
+    categories = Photo.objects.values_list('category', flat=True).distinct()
+    return render(request, 'galleries/index.html', {'photos': photos, 'categories': categories})
 
 
 def imagem(request, id):

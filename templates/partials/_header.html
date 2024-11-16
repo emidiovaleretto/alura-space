@@ -1,7 +1,9 @@
 {% load static %}
 
 <header class="cabecalho">
-    <img src="{% static 'img/logo.png' %}" alt="Logo da Alura Space" />
+    <a href="{% url 'index' %}">
+        <img src="{% static 'img/logo.png' %}" alt="Logo da Alura Space" />
+    </a>
     <div class="cabecalho__busca">
         <div class="busca__fundo">
             <input class="busca__input" type="text" placeholder="O que você procura?">

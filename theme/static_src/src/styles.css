@@ -36,7 +36,7 @@
 }
 
 .card__tag {
-    @apply bg-[#D9D9D940] rounded-lg border-2 border-transparent text-xl left-[310px] mr-6 p-2 absolute text-center top-5 w-24;
+    @apply bg-[#D9D9D940] rounded-lg border-2 border-transparent text-xl left-[310px] mr-6 p-2 absolute text-center top-5 w-fit;
 }
 
 .card__info {
