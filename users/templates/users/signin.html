@@ -6,7 +6,7 @@
 
 {% include 'partials/_alerts.html' %}
 
-<form action="" method="POST">
+<form action="{% url 'signin' %}" method="POST">
     {% csrf_token %}
 
     <div class="flex flex-col mb-2">

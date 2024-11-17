@@ -6,15 +6,21 @@
 
 {% include 'partials/_alerts.html' %}
 
-<form action="" method="POST">
+<form action="{% url 'signup' %}" method="POST">
     {% csrf_token %}
-    <div class="flex flex-col mb-2">
     {% for field in form.visible_fields %}
-        <label for="{{ id_username }}" class="text-[#D9D9D9] mb-2">{{ field.label }}</label>
-        {{ field }}
+        <div class="flex flex-col mb-2">
+            <label for="{{ field.id_for_label }}" class="text-[#D9D9D9] mb-2">{{ field.label }}</label>
+            {{ field }}
+        </div>
+        {% for error in field.errors %}
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-red-200 dark:text-red-900" role="alert">
+            <span class="font-medium">{{ error }}</span>
+          </div>
+        {% endfor %}
     {% endfor %}
-    </div>
-    <div class="w-full text-center">
+
+    <div class="w-full text-center mt-4">
         <button class="button-primary" type="submit">Criar sua conta</button>
     </div>
 </form>

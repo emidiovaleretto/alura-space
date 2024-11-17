@@ -6,7 +6,7 @@ class PhotoAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'caption', 'created_at', 'published')
     list_display_links = ('id', 'name')
     search_fields = ('name',)
-    list_filter = ('category',)
+    list_filter = ('category', 'user')
     list_editable = ('published',)
     list_per_page = 10
 

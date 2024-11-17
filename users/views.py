@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.messages import constants as message_tag
 from .forms import SigninForm, SignupForm
 
 
@@ -18,14 +19,16 @@ def signin(request):
 
         if user:
             login(request, user)
-            messages.success(
+            messages.add_message(
                 request,
+                message_tag.SUCCESS,
                 'Login efetuado com sucesso!'
             )
             return redirect('index')
         else:
-            messages.error(
+            messages.add_message(
                 request,
+                message_tag.ERROR,
                 'Não foi possível efetuar o login. Verifique as suas credenciais de acesso.'
             )
             return redirect('signin')
@@ -34,50 +37,38 @@ def signin(request):
 
 
 def signup(request):
-    form = SignupForm()
-
     if request.method == 'POST':
         form = SignupForm(request.POST)
         
         if form.is_valid():
-            name = request.POST.get('name')
-            email = request.POST.get('email')
-            password1 = request.POST.get('password1')
-            password2 = request.POST.get('password2')
+            name = form.cleaned_data.get('name')
+            email = form.cleaned_data.get('email')
+            password1 = form.cleaned_data.get('password1')
 
-        if password1 != password2:
-            messages.error(
-                request,
-                'As senhas não conferem.'
-            )
-            return redirect('index')
-
-        if User.objects.filter(username=name).exists():
-            messages.error(
-                request,
-                'Já existe um usuário com esse nome.'
-            )
-            return redirect('signup')
-
-        user = User.objects.create_user(
-            username=name, 
-            email=email, 
-            password=password1
-        )
-        user.save()
-        messages.success(
-            request,
-            'Usuário cadastrado com sucesso!'
-        )
-        return redirect('signin')
-
+            if User.objects.filter(username=name).exists():
+                messages.add_message(
+                    request,
+                    message_tag.ERROR,
+                    'Já existe um usuário com esse nome.'
+                )
+            else:
+                user = User.objects.create_user(
+                    username=name, 
+                    email=email, 
+                    password=password1
+                )
+                user.save()
+                return redirect('signin')
+    else:
+        form = SignupForm()
+    
     return render(request, 'users/signup.html', {'form': form})
-
 
 def signout(request):
     logout(request)
-    messages.success(
+    messages.add_message(
         request,
+        message_tag.SUCCESS,
         'Usuário deslogado com sucesso!'
     )
     return redirect('signin')
