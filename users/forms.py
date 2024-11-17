@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 
 
 class SigninForm(forms.Form):
@@ -29,13 +30,13 @@ class SigninForm(forms.Form):
 
 class SignupForm(forms.Form):
     name = forms.CharField(
-        label="Nome completo", 
+        label="Usuário", 
         max_length=100, 
         required=True,
         widget=forms.TextInput(
             attrs={
                 'class': 'input-text',
-                'placeholder': 'Ex.: João Silva'
+                'placeholder': 'Ex.: JoãoSilva'
             }
         )
     )
@@ -72,3 +73,30 @@ class SignupForm(forms.Form):
             }
         )
     )
+
+    
+    def clean_name(self):
+        data = self.cleaned_data.get("name")
+        
+        if data:
+            data = data.strip()
+
+            if ' ' in data:
+                raise ValidationError(
+                    'Não é possível inserir espaços dentro do campo (usuário)'
+                )
+
+            return data
+
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+
+        if password1 and password2:
+            if password1 != password2:
+                raise ValidationError(
+                    'As senhas não conferem.'
+                )
+
+            return password2
