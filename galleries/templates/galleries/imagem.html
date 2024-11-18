@@ -19,6 +19,14 @@
                         <p class="imagem__texto">{{ photo.description }}</p>
                     </div>
                 </div>
+                
+                {% if user.is_superuser %}
+                <div class="w-full flex flex-col items-end mt-5">
+                    <button type="button" class="w-28 btn btn-primary">Editar</button>
+                    <button type="button" class="w-28 btn btn-danger-outline">Excluir</button>                
+                </div>
+                {% endif %}
+                    
             </div>
         </section>
     </section>
