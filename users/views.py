@@ -7,29 +7,35 @@ from .forms import SigninForm, SignupForm
 
 
 def signin(request):
+    '''
+    View para efetuar o login do usuário.
+    Se o método da requisição for POST, o formulário é validado e, se válido,
+    o usuário é autenticado e redirecionado para a página inicial.
+    Caso contrário, exibe o formulário de login.
+    '''
     form = SigninForm()
     if request.method == 'POST':
         form = SigninForm(request.POST)
 
-        if form.is_valid:
+        if form.is_valid():
             username = request.POST.get('username')
             password = request.POST.get('password')
+            user = authenticate(username=username, password=password)
 
-        user = authenticate(username=username, password=password)
+            if user:
+                login(request, user)
+                messages.add_message(
+                    request,
+                    message_tag.SUCCESS,
+                    'Login efetuado com sucesso!'
+                )
+                return redirect('index')
 
-        if user:
-            login(request, user)
-            messages.add_message(
-                request,
-                message_tag.SUCCESS,
-                'Login efetuado com sucesso!'
-            )
-            return redirect('index')
-        else:
             messages.add_message(
                 request,
                 message_tag.ERROR,
-                'Não foi possível efetuar o login. Verifique as suas credenciais de acesso.'
+                'Não foi possível efetuar o login. Verifique as suas'
+                'credenciais de acesso.'
             )
             return redirect('signin')
 
@@ -37,6 +43,12 @@ def signin(request):
 
 
 def signup(request):
+    '''
+    View para cadastrar um novo usuário.
+    Se o método da requisição for POST, o formulário é validado e, se válido,
+    o usuário é criado e redirecionado para a página de login.
+    Caso contrário, exibe o formulário de cadastro.
+    '''
     if request.method == 'POST':
         form = SignupForm(request.POST)
 
@@ -66,6 +78,9 @@ def signup(request):
 
 
 def signout(request):
+    '''
+    View para deslogar o usuário.
+    '''
     logout(request)
     messages.add_message(
         request,
