@@ -28,9 +28,11 @@
       {% include 'partials/_header.html' %}
 
       <main class="principal">
-
-        {% include 'partials/_navigation.html' %}
-
+        
+        {% if user.is_authenticated %}
+          {% include 'partials/_navigation.html' %}
+        {% endif %}
+          
         <section class="conteudo">
 
           {% block 'body' %}
