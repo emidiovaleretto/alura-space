@@ -4,8 +4,8 @@ from django.core.exceptions import ValidationError
 
 class SigninForm(forms.Form):
     username = forms.CharField(
-        label="Nome de Login", 
-        max_length=100, 
+        label="Nome de Login",
+        max_length=100,
         required=True,
         widget=forms.TextInput(
             attrs={
@@ -15,9 +15,9 @@ class SigninForm(forms.Form):
         )
     )
     password = forms.CharField(
-        label="Senha", 
-        max_length=70, 
-        required=True, 
+        label="Senha",
+        max_length=70,
+        required=True,
         widget=forms.PasswordInput(
             attrs={
                 'class': 'input-text',
@@ -27,11 +27,10 @@ class SigninForm(forms.Form):
     )
 
 
-
 class SignupForm(forms.Form):
     name = forms.CharField(
-        label="Usuário", 
-        max_length=100, 
+        label="Usuário",
+        max_length=100,
         required=True,
         widget=forms.TextInput(
             attrs={
@@ -41,8 +40,8 @@ class SignupForm(forms.Form):
         )
     )
     email = forms.EmailField(
-        label="Email", 
-        max_length=100, 
+        label="Email",
+        max_length=100,
         required=True,
         widget=forms.EmailInput(
             attrs={
@@ -52,9 +51,9 @@ class SignupForm(forms.Form):
         )
     )
     password1 = forms.CharField(
-        label="Senha", 
-        max_length=70, 
-        required=True, 
+        label="Senha",
+        max_length=70,
+        required=True,
         widget=forms.PasswordInput(
             attrs={
                 'class': 'input-text',
@@ -63,9 +62,9 @@ class SignupForm(forms.Form):
         )
     )
     password2 = forms.CharField(
-        label="Confirmação de senha", 
-        max_length=70, 
-        required=True, 
+        label="Confirmação de senha",
+        max_length=70,
+        required=True,
         widget=forms.PasswordInput(
             attrs={
                 'class': 'input-text',
@@ -74,10 +73,9 @@ class SignupForm(forms.Form):
         )
     )
 
-    
     def clean_name(self):
         data = self.cleaned_data.get("name")
-        
+
         if data:
             data = data.strip()
 
@@ -87,7 +85,6 @@ class SignupForm(forms.Form):
                 )
 
             return data
-
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
