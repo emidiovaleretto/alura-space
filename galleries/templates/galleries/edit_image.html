@@ -3,9 +3,10 @@
 
 {% block 'body' %}
 
-{% include 'partials/_alerts.html' %}
-
-<h1 class="text-center text-3xl font-bold text-white">Edit Image</h1>
-{% include 'partials/_form.html' with button_title="Salvar alterações" %}
+<div class="w-8/12 mt-20 mx-auto">
+    {% include 'partials/_alerts.html' %}
+    <h1 class="text-center text-3xl font-bold text-white">Edit Image</h1>
+    {% include 'partials/_form.html' with button_title="Salvar alterações" %}
+</div>
 
 {% endblock 'body' %}
