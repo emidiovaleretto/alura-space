@@ -39,7 +39,7 @@ def signin(request):
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
-        
+
         if form.is_valid():
             name = form.cleaned_data.get('name')
             email = form.cleaned_data.get('email')
@@ -53,16 +53,17 @@ def signup(request):
                 )
             else:
                 user = User.objects.create_user(
-                    username=name, 
-                    email=email, 
+                    username=name,
+                    email=email,
                     password=password1
                 )
                 user.save()
                 return redirect('signin')
     else:
         form = SignupForm()
-    
+
     return render(request, 'users/signup.html', {'form': form})
+
 
 def signout(request):
     logout(request)
@@ -72,4 +73,3 @@ def signout(request):
         'Usuário deslogado com sucesso!'
     )
     return redirect('signin')
-    
