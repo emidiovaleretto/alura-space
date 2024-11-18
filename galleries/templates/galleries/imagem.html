@@ -22,8 +22,8 @@
                 
                 {% if user.is_superuser %}
                 <div class="w-full flex flex-col items-end mt-5">
-                    <button type="button" class="w-28 btn btn-primary">Editar</button>
-                    <button type="button" class="w-28 btn btn-danger-outline">Excluir</button>                
+                    <a href="{% url 'edit' photo.id %}" class="w-28 btn btn-primary">Editar</a>
+                    <a href="{% url 'remove' photo.id %}" class="w-28 btn btn-danger-outline">Excluir</a>                
                 </div>
                 {% endif %}
                     
