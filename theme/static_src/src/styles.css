@@ -86,6 +86,10 @@
     @apply text-xs mt-2
 }
 
+.conteudo {
+    @apply w-full min-h-screen pl-10
+}
+
 .galeria {
     @apply flex w-full
 }
