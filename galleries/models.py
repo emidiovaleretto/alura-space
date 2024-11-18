@@ -8,7 +8,7 @@ class Photo(models.Model):
         ('NEBULOSA', 'Nebulosa'),
         ('GALAXIA', 'Galaxia'),
         ('PLANETA', 'Planeta'),
-        ('ESTRELLA', 'Estrela'),
+        ('ESTRELA', 'Estrela'),
     )
     name = models.CharField(max_length=100, null=False, blank=False)
     caption = models.CharField(max_length=150, null=False, blank=False)
