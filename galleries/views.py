@@ -11,9 +11,14 @@ from .forms import PhotoForm
 def index(request):
     photos = Photo.objects.filter(published=True)
     categories = Photo.objects.values_list('category', flat=True).distinct()
-    return render(request, 'galleries/index.html', {'photos': photos, 'categories': categories})
+    return render(request, 'galleries/index.html', {
+        'photos': photos,
+        'categories': categories
+    }
+    )
 
 
+@login_required(login_url='/auth/signin')
 def add_image(request):
     form = PhotoForm()
 
@@ -36,7 +41,6 @@ def add_image(request):
                 user=request.user
             )
 
-            form.save()
             messages.add_message(
                 request,
                 message_tag.SUCCESS,
@@ -54,6 +58,42 @@ def add_image(request):
         form = PhotoForm()
 
     return render(request, 'galleries/add_image.html', {'form': form})
+
+
+@login_required(login_url='/auth/signin')
+def edit_image(request, image_id):
+    image = get_object_or_404(Photo, pk=image_id)
+
+    if request.method == "POST":
+        form = PhotoForm(request.POST, request.FILES, instance=image)
+        print(form.errors)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Imagem atualizada com sucesso!')
+            return redirect('index')
+        else:
+            messages.error(
+                request,
+                'Não foi possível atualizar a imagem.'
+                'Verifique os campos obrigatórios.'
+            )
+    else:
+        form = PhotoForm(instance=image)
+
+    return render(request, 'galleries/edit_image.html', {'form': form})
+
+
+@login_required(login_url='/auth/signin')
+def remove_image(request, image_id):
+    image = get_object_or_404(Photo, pk=image_id)
+    image.delete()
+    messages.add_message(
+        request,
+        message_tag.SUCCESS,
+        'Imagem removida com sucesso!'
+    )
+    return redirect('index')
 
 
 @login_required(login_url='/auth/signin')
